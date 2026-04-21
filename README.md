@@ -59,7 +59,7 @@
 ## 🚀 Интерактивный демо‑стенд
 
 Попробуйте модель в действии:  
-👉 **[Streamlit App](https://ваш-username-название.streamlit.app/)** *(замените ссылку после деплоя)*
+👉 **[Streamlit App](https://telco-churn-prediction-8yjs8kdtys5me887wemuza.streamlit.app)** 
 
 Введите параметры клиента и получите прогноз вероятности оттока с рекомендацией.
 
