@@ -1,6 +1,29 @@
+# Прогнозирование оттока клиентов телеком‑компании
+
+[![ROC‑AUC](https://img.shields.io/badge/ROC--AUC-0.847-brightgreen)](https://github.com/tryhardsummer/telco-churn-prediction)
+[![Recall](https://img.shields.io/badge/Recall-0.984-blue)](https://github.com/tryhardsummer/telco-churn-prediction)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live_Demo-red?logo=streamlit)](https://telco-churn-prediction-wtmwdxztcjetednfxkr2dk.streamlit.app)
+
+## 📁 Архитектура проекта
+```
+ReturnClient/
+├── app/
+│ └── streamlit_app.py # 🕹️ Интерактивное демо на Streamlit
+├── models/
+│ ├── catboost_model.pkl # 💾 Обученная модель CatBoost
+│ └── feature_names.pkl # 📋 Список признаков после препроцессинга
+├── notebook/
+│ └── Telco_Churn_Project.ipynb # 🔬 Ноутбук с анализом и обучением
+├── .gitignore
+├── Dataset.csv # 📊 Исходные данные (опционально)
+├── README.md
+├── requirements.txt # 📦 Зависимости
+└── runtime.txt # ⚙️ Версия Python для деплоя (3.11)
+```
+
 ## 🎯 Цель проекта
 
-Разработать модель машинного обучения, которая предсказывает вероятность оттока клиента, чтобы отдел удержания мог своевременно предлагать стимулирующие акции и снижать потери.
+Разработать модель машинного обучения, которая предсказывает вероятность оттока клиента телеком‑компании. Это позволяет отделу удержания своевременно предлагать персональные акции и снижать потери.
 
 ## 📊 Данные
 
@@ -8,8 +31,8 @@
 
 ## 🛠 Инструменты
 
-- **Язык:** Python 3.10
-- **Библиотеки:** pandas, numpy, scikit-learn, CatBoost, PyTorch, SHAP, matplotlib, seaborn
+- **Язык:** Python 3.11
+- **Библиотеки:** pandas, numpy, scikit-learn, CatBoost, PyTorch, SHAP, matplotlib, seaborn, joblib, streamlit
 - **Визуализация и демо:** Streamlit
 
 ## 📈 Основные этапы
@@ -19,12 +42,12 @@
    - Визуализированы распределения и корреляции.
 
 2. **Предобработка**  
-   - Обработка пропусков.  
+   - Обработка пропусков в `TotalCharges`.  
    - Кодирование категориальных признаков (One‑Hot, бинарное).  
-   - Масштабирование числовых признаков (`StandardScaler`).
+   - Масштабирование числовых признаков (для линейных моделей и нейросети).
 
 3. **Моделирование**  
-   - Базовые модели: Logistic Regression, RandomForest.  
+   - Базовые модели: Logistic Regression, Decision Tree.  
    - Продвинутые: CatBoost, нейронная сеть (PyTorch).  
    - Подбор порога вероятности для максимизации Recall (бизнес‑метрика).  
    - Сравнение моделей по ROC‑AUC, Recall, Precision.
@@ -39,9 +62,8 @@
 
 | Метрика | Значение |
 |---------|----------|
-| ROC‑AUC | 0.8467 |
+| ROC‑AUC | **0.847** |
 | Recall (уходящие клиенты) | **0.984** |
-| Precision (при max Recall) | 0.346 |
 
 Модель способна выявить **98 из 100** клиентов, которые действительно собираются уйти. Это позволяет минимизировать потери, даже ценой дополнительных затрат на ложные срабатывания.
 
@@ -55,14 +77,11 @@
 - **Поощрять автоматические платежи** с кредитных карт.  
 - **Провести анализ качества оптоволоконных услуг** (Fiber Optic) и улучшить поддержку.
 
+Полный список рекомендаций — в ноутбуке.
 
-## 🚀 Интерактивный демо‑стенд
+## 🚀 Быстрый старт (локальный запуск)
 
-Попробуйте модель в действии:  
-👉 **[Streamlit App](https://telco-churn-prediction-8yjs8kdtys5me887wemuza.streamlit.app)** 
-
-Введите параметры клиента и получите прогноз вероятности оттока с рекомендацией.
-
-
-
-
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/tryhardsummer/telco-churn-prediction.git
+   cd telco-churn-prediction
